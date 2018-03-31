@@ -10,5 +10,6 @@ namespace Presentation.ClientToggle
         ToggleDto GetById(ToggleDto toogle);
         IEnumerable<ToggleDto> GetAll();
         ToggleDto Update(ToggleDto toogleDto);
+        void Delete(ToggleDto toggleDtoToUpdate);
     }
 }

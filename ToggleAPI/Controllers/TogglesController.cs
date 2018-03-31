@@ -2,6 +2,8 @@
 using Presentation.ClientToggle;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using ToggleAPI.Models;
 
@@ -45,19 +47,43 @@ namespace ToggleAPI.Controllers
 
         }
 
-        // PUT api/toggles/5
-        public ToggleViewModel Put(ToggleViewModel toggleViewModel)
+        // PUT api/toggles/toggleViewModel
+        public HttpResponseMessage Put(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();
             toogleDto.Id = toggleViewModel.Id;
-            _clientToggle.Update(toogleDto);
-            return toggleViewModel;
+            ToggleDto toggleDtoToUpdate= _clientToggle.GetById(toogleDto);
+           
+            if (toggleDtoToUpdate==null)
+            {
+
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            
+                _clientToggle.Update(toogleDto);
+                var response = new HttpResponseMessage();
+                response.Headers.Add("Message", "Toggle succsessfuly updated");
+                return response;
+            
+            
         }
 
-        // DELETE api/toggles/5
-        public void Delete(ToggleViewModel toggleViewModel)
+        // DELETE api/toggles/toggleViewModel
+        public HttpResponseMessage Delete(ToggleViewModel toggleViewModel)
         {
-           
+            ToggleDto toogleDto = new ToggleDto();
+            toogleDto.Id = toggleViewModel.Id;
+            ToggleDto toggleDtoToUpdate = _clientToggle.GetById(toogleDto);
+
+            if (toggleDtoToUpdate == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            _clientToggle.Delete(toggleDtoToUpdate);
+            var response = new HttpResponseMessage();
+            response.Headers.Add("DeleteMessage", "Toggle succsessfuly deleted");
+            return response;
+            
         }
     }
 }

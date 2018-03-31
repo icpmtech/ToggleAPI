@@ -17,6 +17,11 @@ namespace Presentation.ClientToggle
             throw new NotImplementedException();
         }
 
+        public void Delete(ToggleDto toggleDtoToUpdate)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ToggleDto> GetAll()
         {
             throw new NotImplementedException();
