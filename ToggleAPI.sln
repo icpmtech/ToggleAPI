@@ -7,6 +7,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToggleAPI", "ToggleAPI\Togg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToggleAPI.Tests", "ToggleAPI.Tests\ToggleAPI.Tests.csproj", "{9950E1F8-B971-4CA8-96A1-F2DBB1813D03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{39C855A5-9C5E-40EC-A4F6-CBA2782076A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BussinessLayer", "BussinessLayer", "{06CEA3A2-99B7-445D-A406-95C1FC2ED796}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{76AF5492-E2DE-4D76-8029-45583F93FF01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Repositories", "Data\Data.Repositories.csproj", "{D3563E9A-E36E-49ED-9081-97A392E33571}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Entities", "Data.Entities\Data.Entities.csproj", "{B37954BF-3721-4AA9-BB68-AF7A0BD401D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussiness.ToggleManager", "Bussiness.ToggleManager_\Bussiness.ToggleManager.csproj", "{5779C1BA-4714-4F21-99D4-68B7E1947338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.ClientToggle", "Presentation.ClientToggle_\Presentation.ClientToggle.csproj", "{4CC54F3A-1E76-44D7-8DBE-105517A29F09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +35,31 @@ Global
 		{9950E1F8-B971-4CA8-96A1-F2DBB1813D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9950E1F8-B971-4CA8-96A1-F2DBB1813D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9950E1F8-B971-4CA8-96A1-F2DBB1813D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3563E9A-E36E-49ED-9081-97A392E33571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3563E9A-E36E-49ED-9081-97A392E33571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3563E9A-E36E-49ED-9081-97A392E33571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3563E9A-E36E-49ED-9081-97A392E33571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B37954BF-3721-4AA9-BB68-AF7A0BD401D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B37954BF-3721-4AA9-BB68-AF7A0BD401D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B37954BF-3721-4AA9-BB68-AF7A0BD401D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B37954BF-3721-4AA9-BB68-AF7A0BD401D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5779C1BA-4714-4F21-99D4-68B7E1947338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5779C1BA-4714-4F21-99D4-68B7E1947338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5779C1BA-4714-4F21-99D4-68B7E1947338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5779C1BA-4714-4F21-99D4-68B7E1947338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC54F3A-1E76-44D7-8DBE-105517A29F09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC54F3A-1E76-44D7-8DBE-105517A29F09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC54F3A-1E76-44D7-8DBE-105517A29F09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC54F3A-1E76-44D7-8DBE-105517A29F09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3563E9A-E36E-49ED-9081-97A392E33571} = {39C855A5-9C5E-40EC-A4F6-CBA2782076A0}
+		{B37954BF-3721-4AA9-BB68-AF7A0BD401D2} = {39C855A5-9C5E-40EC-A4F6-CBA2782076A0}
+		{5779C1BA-4714-4F21-99D4-68B7E1947338} = {06CEA3A2-99B7-445D-A406-95C1FC2ED796}
+		{4CC54F3A-1E76-44D7-8DBE-105517A29F09} = {76AF5492-E2DE-4D76-8029-45583F93FF01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4FC4897-9E6C-46B1-A986-2BBA81621A47}
