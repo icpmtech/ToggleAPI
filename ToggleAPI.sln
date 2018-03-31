@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Entities", "Data.Entit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussiness.ToggleManager", "Bussiness.ToggleManager_\Bussiness.ToggleManager.csproj", "{5779C1BA-4714-4F21-99D4-68B7E1947338}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.ClientToggle", "Presentation.ClientToggle_\Presentation.ClientToggle.csproj", "{4CC54F3A-1E76-44D7-8DBE-105517A29F09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.ClientToggle", "Presentation.ClientToggle_\Service.ClientToggle.csproj", "{4CC54F3A-1E76-44D7-8DBE-105517A29F09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestPresentationClient", "UnitTestPresentationClient\UnitTestPresentationClient.csproj", "{8F5F8E3D-4CCA-4D16-A676-D1C655330A6C}"
 EndProject

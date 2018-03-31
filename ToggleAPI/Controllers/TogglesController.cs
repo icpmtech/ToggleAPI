@@ -1,5 +1,5 @@
 ﻿using Bussiness.Dtos.ToggleManager;
-using Presentation.ClientToggle;
+using Service.ClientToggle;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,20 +9,27 @@ using ToggleAPI.Models;
 
 namespace ToggleAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [RoutePrefix("api/toggles")]
     public class TogglesController : ApiController
     {
-       private IClientToggle _clientToggle;
-        public TogglesController(ClientToggle clientToggle)
+        public TogglesController()
         {
-            _clientToggle = clientToggle;
+
+        }
+       private IClientToggle _clientToggle;
+        public TogglesController(IClientToggle clientToggle)
+        {
+            _clientToggle =  clientToggle;
         }
         // GET api/toggles
         /// <summary>
         /// This 
         /// </summary>
         /// <returns>An list of Toggles</returns>
-        public IEnumerable<ToggleViewModel> Get()
+        [HttpGet]
+        [Route("")]
+        public IEnumerable<ToggleViewModel> GetToggles()
         {
             var togglesDtos= _clientToggle.GetAll();
             return togglesDtos.Select(s => new ToggleViewModel(s));
@@ -30,7 +37,8 @@ namespace ToggleAPI.Controllers
         }
 
         // GET api/toggles/5
-        public ToggleViewModel Get(ToggleViewModel toggleViewModel)
+        [HttpGet]
+        public ToggleViewModel Details(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();
             toogleDto.Id = toggleViewModel.Id;
@@ -38,6 +46,7 @@ namespace ToggleAPI.Controllers
         }
 
         // POST api/toggles
+        [HttpPost]
         public ToggleViewModel Post(ToggleViewModel toggleViewModel )
         {
             ToggleDto toogleDto = new ToggleDto();
@@ -48,6 +57,7 @@ namespace ToggleAPI.Controllers
         }
 
         // PUT api/toggles/toggleViewModel
+        [HttpPut]
         public HttpResponseMessage Put(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();
@@ -69,6 +79,7 @@ namespace ToggleAPI.Controllers
         }
 
         // DELETE api/toggles/toggleViewModel
+        [HttpDelete]
         public HttpResponseMessage Delete(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();

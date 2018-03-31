@@ -17,7 +17,7 @@ namespace Bussiness.ToggleManager
 
         public IEnumerable<ToggleDto> GetAll()
         {
-            var toggles = unitOfWork.ToggleRepository.Get(includeProperties: "Toggle");
+            var toggles = unitOfWork.ToggleRepository.Get(includeProperties: "*");
 
             return null;
         }

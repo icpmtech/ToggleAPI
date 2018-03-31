@@ -9,6 +9,7 @@ namespace ToggleAPI.Models
         public ToggleViewModel(ToggleDto s)
         {
             this.s = s;
+            ToggleAPI.Helpers.Utils.CreateLinks(this);
         }
 
         public int Id { get; internal set; }

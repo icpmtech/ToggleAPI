@@ -2,7 +2,7 @@
 using Bussiness.Dtos.ToggleManager;
 using System.Collections.Generic;
 
-namespace Presentation.ClientToggle
+namespace Service.ClientToggle
 {
     public interface IClientToggle
     {

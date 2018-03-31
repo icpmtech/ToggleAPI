@@ -113,9 +113,9 @@
       <Project>{5779C1BA-4714-4F21-99D4-68B7E1947338}</Project>
       <Name>Bussiness.ToggleManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.ClientToggle_\Presentation.ClientToggle.csproj">
+    <ProjectReference Include="..\Presentation.ClientToggle_\Service.ClientToggle.csproj">
       <Project>{4CC54F3A-1E76-44D7-8DBE-105517A29F09}</Project>
-      <Name>Presentation.ClientToggle</Name>
+      <Name>Service.ClientToggle</Name>
     </ProjectReference>
     <ProjectReference Include="..\ToggleAPI\ToggleAPI.csproj">
       <Project>{9EB1B534-3D9D-486D-BD10-B6FABF26A672}</Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Presentation.ClientToggle;
+using Service.ClientToggle;
 using Bussiness.ToggleManager;
 using ToggleAPI.Controllers;
 using ToggleAPI.Models;
@@ -23,7 +23,7 @@ namespace ToggleAPI.Tests.Controllers
             TogglesController controller = new TogglesController( clientToggle);
 
             // Act
-            IEnumerable<ToggleViewModel> result = controller.Get();
+            IEnumerable<ToggleViewModel> result = controller.GetToggles();
 
             // Assert
             Assert.IsNotNull(result);

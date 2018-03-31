@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Bussiness.Dtos.ToggleManager;
 using Bussiness.ToggleManager;
 
-namespace Presentation.ClientToggle
+namespace Service.ClientToggle
 {
     public class ClientToggle : IClientToggle
     {
        private IToggleManager _toggleManager;
-        public ClientToggle(ToggleManager toggleManager)
+        public ClientToggle(IToggleManager toggleManager)
         {
             _toggleManager = toggleManager;
         }
@@ -24,7 +24,7 @@ namespace Presentation.ClientToggle
 
         public IEnumerable<ToggleDto> GetAll()
         {
-            throw new NotImplementedException();
+          return  _toggleManager.GetAll();
         }
 
         public ToggleDto GetById(ToggleDto toogle)

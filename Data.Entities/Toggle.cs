@@ -14,6 +14,6 @@ namespace Data.Entities
         public Guid Identifier { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Service> Services { get; set; }
-        public virtual State State { get; set; }
+       
     }
 }
