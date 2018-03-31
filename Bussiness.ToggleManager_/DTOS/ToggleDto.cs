@@ -6,7 +6,7 @@ namespace Bussiness.Dtos.ToggleManager
     public class ToggleDto
     {
       
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Version { get; set; }
        
         private Toggle toggle;

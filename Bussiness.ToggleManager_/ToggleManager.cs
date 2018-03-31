@@ -17,14 +17,14 @@ namespace Bussiness.ToggleManager
 
         public IEnumerable<ToggleDto> GetAll()
         {
-            var toggles = unitOfWork.ToggleRepository.Get();
-
-            return null;
+            var toggles = unitOfWork.ToggleRepository.Get().ConvertAll<ToggleDto>(c=>new ToggleDto(c));
+            
+            return toggles;
         }
 
         public ToggleDto GetById(ToggleDto toogle)
         {
-            var toggle = unitOfWork.ToggleRepository.GetByID(toogle.Id);
+            var toggle = unitOfWork.ToggleRepository.GetById(toogle.Id);
             return new ToggleDto(toggle);
         }
 

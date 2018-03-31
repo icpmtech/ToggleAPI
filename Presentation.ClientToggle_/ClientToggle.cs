@@ -14,7 +14,7 @@ namespace Service.ClientToggle
         }
         public void Add(ToggleDto toogle)
         {
-            throw new NotImplementedException();
+            _toggleManager.Add(toogle);
         }
 
         public void Delete(ToggleDto toggleDtoToUpdate)
@@ -29,12 +29,12 @@ namespace Service.ClientToggle
 
         public ToggleDto GetById(ToggleDto toogle)
         {
-            throw new NotImplementedException();
+          return  _toggleManager.GetById(toogle);
         }
 
         public ToggleDto Update(ToggleDto toogleDto)
         {
-            throw new NotImplementedException();
+           return _toggleManager.Update(toogleDto);
         }
     }
 }

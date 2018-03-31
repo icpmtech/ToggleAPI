@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ToggleContext.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Migrations\201803311658522_Init.cs" />
     <Compile Include="Migrations\201803311658522_Init.Designer.cs">
       <DependentUpon>201803311658522_Init.cs</DependentUpon>

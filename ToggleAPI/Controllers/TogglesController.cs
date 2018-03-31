@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using ToggleAPI.Models;
 
 namespace ToggleAPI.Controllers
@@ -51,6 +52,8 @@ namespace ToggleAPI.Controllers
 
         // POST api/toggles
         [HttpPost]
+        [Route("api/toggles")]
+        [ResponseType(typeof(ToggleViewModel))]
         public ToggleViewModel Post(ToggleViewModel toggleViewModel )
         {
             ToggleDto toogleDto = new ToggleDto();
@@ -62,6 +65,8 @@ namespace ToggleAPI.Controllers
 
         // PUT api/toggles/toggleViewModel
         [HttpPut]
+        [Route("api/toggles")]
+        [ResponseType(typeof(ToggleViewModel))]
         public HttpResponseMessage Put(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();
@@ -84,6 +89,7 @@ namespace ToggleAPI.Controllers
 
         // DELETE api/toggles/toggleViewModel
         [HttpDelete]
+        [Route("api/toggles")]
         public HttpResponseMessage Delete(ToggleViewModel toggleViewModel)
         {
             ToggleDto toogleDto = new ToggleDto();
