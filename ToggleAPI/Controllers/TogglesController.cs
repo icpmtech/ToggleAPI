@@ -1,5 +1,6 @@
 ﻿using Bussiness.Dtos.ToggleManager;
 using Service.ClientToggle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -41,12 +42,14 @@ namespace ToggleAPI.Controllers
              
         }
 
-        // GET api/toggles/5
+        // GET api/toggles/00000000-0000-0000-0000-000000000000/1
         [HttpGet]
-        public ToggleViewModel Details(ToggleViewModel toggleViewModel)
+        [Route("api/toggles/{id:guid}/{version:int}")]
+        public ToggleViewModel Details(Guid id,int version)
         {
             ToggleDto toogleDto = new ToggleDto();
-            toogleDto.Id = toggleViewModel.Id;
+            toogleDto.Id = id;
+            toogleDto.Version = version;
             return new ToggleViewModel(_clientToggle.GetById(toogleDto));
         }
 

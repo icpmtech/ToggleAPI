@@ -12,12 +12,12 @@ namespace Service.ClientToggle
         {
             _toggleManager = toggleManager;
         }
-        public void Add(ToggleDto toogle)
+        public void Add(ToggleDto toogleDto)
         {
-            _toggleManager.Add(toogle);
+            _toggleManager.Add(toogleDto);
         }
 
-        public void Delete(ToggleDto toggleDtoToUpdate)
+        public void Delete(ToggleDto toogleDto)
         {
             throw new NotImplementedException();
         }
@@ -27,9 +27,9 @@ namespace Service.ClientToggle
           return  _toggleManager.GetAll();
         }
 
-        public ToggleDto GetById(ToggleDto toogle)
+        public ToggleDto GetById(ToggleDto toogleDto)
         {
-          return  _toggleManager.GetById(toogle);
+          return  _toggleManager.GetById(toogleDto);
         }
 
         public ToggleDto Update(ToggleDto toogleDto)
