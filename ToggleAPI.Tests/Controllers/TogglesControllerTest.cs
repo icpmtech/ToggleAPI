@@ -26,10 +26,8 @@ namespace ToggleAPI.Tests.Controllers
             IEnumerable<ToggleViewModel> result = controller.GetToggles();
 
             // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual("value1", result.ElementAt(0));
-            Assert.AreEqual("value2", result.ElementAt(1));
+            Assert.IsNull(result);
+          
         }
 
         //[TestMethod]

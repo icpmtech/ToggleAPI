@@ -32,6 +32,10 @@ namespace ToggleAPI.Controllers
         public IEnumerable<ToggleViewModel> GetToggles()
         {
             var togglesDtos= _clientToggle.GetAll();
+            if (togglesDtos==null)
+            {
+                return Enumerable.Empty<ToggleViewModel>();
+            }
             return togglesDtos.Select(s => new ToggleViewModel(s));
              
         }
