@@ -3,25 +3,13 @@ using System;
 
 namespace Bussiness.Dtos.ToggleManager
 {
-    public class ToggleDto
+    public class ToggleDtoCreate
     {
       
         public Guid Id { get; set; }
         public int Version { get; set; }
         public Guid ServiceId { get; set; }
-
-        private Toggle toggle;
-      
-        public ToggleDto()
-        {
-
-        }
-
-        public ToggleDto(Toggle toggle)
-        {
-            this.toggle = toggle;
-        }
-
-       
+        public bool State { get; set; }
+        public int TypeOfActionToogle { get; set; }
     }
 }

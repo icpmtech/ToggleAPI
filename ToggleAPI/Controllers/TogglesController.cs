@@ -11,55 +11,76 @@ using ToggleAPI.Models;
 
 namespace ToggleAPI.Controllers
 {
-    //[Authorize]
+    
     /// <summary>
-    /// The Rest Api to manage toogles.
+    /// The Rest Api to manage toogles to Services/Applications by States.
     /// </summary>
     [RoutePrefix("api/toggles")]
     public class TogglesController : ApiController
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public TogglesController()
         {
 
         }
        private IClientToggle _clientToggle;
+        /// <summary>
+        /// ClientToggle Service Api to manage the Toggles
+        /// </summary>
+        /// <param name="clientToggle"></param>
         public TogglesController(IClientToggle clientToggle)
         {
             _clientToggle =  clientToggle;
         }
         // GET api/toggles
         /// <summary>
-        /// List of all toggles. 
+        /// List of all toggles from the services/applications and states. 
         /// </summary>
-        /// <returns>An list of Toggles</returns>
+        /// <returns>An list of Toggles.</returns>
         [HttpGet]
+        [ResponseType(typeof(IEnumerable<ToggleViewModel>))]
         [Route("")]
-        public IEnumerable<ToggleViewModel> GetToggles()
+        public HttpResponseMessage GetToggles()
         {
+            HttpResponseMessage response;
             var togglesDtos= _clientToggle.GetAll();
             if (togglesDtos==null)
             {
-                return Enumerable.Empty<ToggleViewModel>();
+                  response = Request.CreateResponse(HttpStatusCode.OK, Enumerable.Empty<ToggleViewModel>());
+                return response;
             }
-            return togglesDtos.Select(s => new ToggleViewModel(s));
+            response = Request.CreateResponse(HttpStatusCode.OK, togglesDtos.Select(s => new ToggleViewModel(s)));
+            return response;
+            
+
              
         }
 
         // GET api/toggles/00000000-0000-0000-0000-000000000000/1
         /// <summary>
-        /// Obtain the model toggle passing the id and version of one toggle in specific. 
+        /// Obtain the model toggle passing the id and version
+        /// of one service/application in specific. 
         /// </summary>
         /// <param name="id">The id of one toogle</param>
         /// <param name="version">The version of one toogle</param>
         /// <returns></returns>
         [HttpGet]
+        [ResponseType(typeof(ToggleViewModel))]
         [Route("api/toggles/{id:guid}/{version:int}")]
-        public ToggleViewModel Details(Guid id,int version)
+        public HttpResponseMessage GetToggleByIdAnVersion(Guid id,int version)
         {
             ToggleDto toogleDto = new ToggleDto();
             toogleDto.Id = id;
             toogleDto.Version = version;
-            return new ToggleViewModel(_clientToggle.GetById(toogleDto));
+            var toggleViewModel = new ToggleViewModel(_clientToggle.GetById(toogleDto));
+            if (toggleViewModel==null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, toggleViewModel);
+            return response;
         }
 
         // POST api/toggles
@@ -68,29 +89,41 @@ namespace ToggleAPI.Controllers
         /// if exists return message in header 'Toggle succsessfuly created' 
         /// if not return not found message.
         /// </summary>
-        /// <param name="toggleViewModel">The model toogle to create.</param>
+        /// <param name="toggleViewModelCreate">The model toogle to create.</param>
         /// <returns></returns>
         [HttpPost]
         [Route("api/toggles")]
-        [ResponseType(typeof(ToggleViewModel))]
-        public HttpResponseMessage Post(ToggleViewModel toggleViewModel )
+        [ResponseType(typeof(ToggleViewModelCreate))]
+        //[Authorize]
+        public HttpResponseMessage Post(ToggleViewModelCreate toggleViewModelCreate)
         {
             var response = new HttpResponseMessage();
             if (ModelState.IsValid)
             {
-                ToggleDto toogleDto = new ToggleDto();
-                toogleDto.Id = toggleViewModel.Id;
-                _clientToggle.Add(toogleDto);
-              
+                ToggleDtoCreate toogleDtoCreate = Helpers.Fillers.FillToggleDtoCreate(toggleViewModelCreate);
+                _clientToggle.Add(toogleDtoCreate);
+
+                response = Request.CreateResponse(HttpStatusCode.OK, toggleViewModelCreate);
+
                 response.Headers.Add("CreateMessage", "Toggle succsessfuly created");
+                
                 return response;
             }
-            
-            response.Headers.Add("CreateMessageError", "Toggle unsuccsessfuly created");
-            return response;
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.BadRequest, toggleViewModelCreate);
+
+                response.Headers.Add("CreateMessageError", "Toggle unsuccsessfuly created");
+                return response;
+            }
+
+
+
 
 
         }
+
+       
 
         // PUT api/toggles/toggleViewModel
         /// <summary>
@@ -104,21 +137,26 @@ namespace ToggleAPI.Controllers
         [Route("api/toggles")]
         [ResponseType(typeof(ToggleViewModel))]
        
-        public HttpResponseMessage Put(ToggleViewModel toggleViewModel)
+        public HttpResponseMessage UpdateToggle(ToggleViewModel toggleViewModel)
         {
+            var response = new HttpResponseMessage();
             ToggleDto toogleDto = new ToggleDto();
             toogleDto.Id = toggleViewModel.Id;
             ToggleDto toggleDtoToUpdate= _clientToggle.GetById(toogleDto);
            
             if (toggleDtoToUpdate==null)
             {
-
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                response = Request.CreateResponse(HttpStatusCode.NotFound, toggleViewModel);
+                response.Headers.Add("UpdateMessage", "Toggle succsessfuly updated");
+                return response;
+               // throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             
                 _clientToggle.Update(toogleDto);
-                var response = new HttpResponseMessage();
-                response.Headers.Add("UpdateMessage", "Toggle succsessfuly updated");
+
+            response = Request.CreateResponse(HttpStatusCode.OK, toggleViewModel);
+
+            response.Headers.Add("UpdateMessage", "Toggle succsessfuly updated");
                 return response;
             
             
@@ -134,18 +172,25 @@ namespace ToggleAPI.Controllers
         /// <returns>An http response message with the model toggle delete.</returns>
         [HttpDelete]
         [Route("api/toggles")]
+        [ResponseType(typeof(ToggleViewModel))]
+
         public HttpResponseMessage Delete(ToggleViewModel toggleViewModel)
         {
+            var response = new HttpResponseMessage();
             ToggleDto toogleDto = new ToggleDto();
             toogleDto.Id = toggleViewModel.Id;
             ToggleDto toggleDtoToUpdate = _clientToggle.GetById(toogleDto);
 
             if (toggleDtoToUpdate == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                response = Request.CreateResponse(HttpStatusCode.NotFound, toggleViewModel);
+
+                response.Headers.Add("DeleteMessage", "Toggle unsuccsessfuly deleted");
             }
             _clientToggle.Delete(toggleDtoToUpdate);
-            var response = new HttpResponseMessage();
+            response.Headers.Add("DeleteMessage", "Toggle succsessfuly deleted");
+            response = Request.CreateResponse(HttpStatusCode.OK, toggleViewModel);
+
             response.Headers.Add("DeleteMessage", "Toggle succsessfuly deleted");
             return response;
             

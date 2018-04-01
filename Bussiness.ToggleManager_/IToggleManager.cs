@@ -6,7 +6,7 @@ namespace Bussiness.ToggleManager
 {
     public interface IToggleManager
     {
-        void Add(ToggleDto toogleDto);
+        void Add(ToggleDtoCreate toogleDtoCreate);
         ToggleDto GetById(ToggleDto toogleDto);
         ToggleDto Update(ToggleDto toogleDto);
         IEnumerable<ToggleDto> GetAll();

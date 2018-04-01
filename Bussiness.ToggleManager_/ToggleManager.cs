@@ -2,6 +2,7 @@
 using Bussiness.Dtos.ToggleManager;
 using Data.Entities;
 using Data.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace Bussiness.ToggleManager
@@ -9,9 +10,16 @@ namespace Bussiness.ToggleManager
     public class ToggleManager : IToggleManager
     {
         private UnitOfWork unitOfWork = new UnitOfWork(); 
-        public void Add(ToggleDto toogle)
+        public void Add(ToggleDtoCreate toogleDtoCreate)
         {
-            unitOfWork.ToggleRepository.Insert(new Toggle());
+          Toggle _toogle=  new Toggle();
+            _toogle.Identifier = Guid.NewGuid();
+           // _toogle.Name= toogleDto
+          Service _service = new Service();
+
+           // _toogle.Services.Add()
+            unitOfWork.ToggleRepository.Insert(_toogle);
+           
             unitOfWork.Save();
         }
 

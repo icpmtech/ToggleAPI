@@ -12,9 +12,11 @@ namespace Service.ClientToggle
         {
             _toggleManager = toggleManager;
         }
-        public void Add(ToggleDto toogleDto)
+       
+
+        public void Add(ToggleDtoCreate toogleDtoCreate)
         {
-            _toggleManager.Add(toogleDto);
+            _toggleManager.Add(toogleDtoCreate);
         }
 
         public void Delete(ToggleDto toogleDto)

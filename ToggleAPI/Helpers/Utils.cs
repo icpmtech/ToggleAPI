@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bussiness.Dtos.ToggleManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace ToggleAPI.Helpers
 {
     public static class Utils
     {
+       
         public static IEnumerable<Link> CreateLinks(ToggleViewModel toggleViewModel)
         {
             UrlHelper Url = new UrlHelper();
