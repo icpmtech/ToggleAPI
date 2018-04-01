@@ -10,16 +10,67 @@ namespace Bussiness.ToggleManager
     public class ToggleManager : IToggleManager
     {
         private UnitOfWork unitOfWork = new UnitOfWork(); 
-        public void Add(ToggleDtoCreate toogleDtoCreate)
+        public void Add(ToggleDtoCreate toggleDtoCreate)
         {
-          Toggle _toogle=  new Toggle();
-            _toogle.Identifier = Guid.NewGuid();
-           // _toogle.Name= toogleDto
-          Service _service = new Service();
+           Service service= unitOfWork.ServiceRepository.GetById(toggleDtoCreate.ServiceId);
+            if (service==null)
+            {
+                throw new Exception("Not found service  :"+ toggleDtoCreate.ServiceId);
+            }
 
-           // _toogle.Services.Add()
+            
+            switch (toggleDtoCreate.TypeOfActionToogle )
+            {
+                case DTOS.TypeToggleDto.IsButtonBlue:
+                    if (service.Name=="ABC" && toggleDtoCreate.State==false)
+                    {
+                        InsertToggle(toggleDtoCreate,service, "IsButtonBlue");
+                    }
+                  else  if (service.Name != "ABC" && toggleDtoCreate.State)
+                    {
+                        InsertToggle(toggleDtoCreate, service, "IsButtonBlue");
+                    }
+                    break;
+                case DTOS.TypeToggleDto.IsButtonGreen:
+                    if (service.Name == "ABC" && toggleDtoCreate.State)
+                    {
+                        InsertToggle(toggleDtoCreate, service, "IsButtonGreen");
+                    }
+                    else if (service.Name != "ABC" && toggleDtoCreate.State)
+                    {
+                        toggleDtoCreate.State = false;
+                        InsertToggle(toggleDtoCreate, service, "IsButtonGreen");
+                    }
+                    break;
+                case DTOS.TypeToggleDto.IsButtonRed:
+                    if (service.Name != "ABC" && toggleDtoCreate.State)
+                    {
+                        InsertToggle(toggleDtoCreate, service, "IsButtonRed");
+                    }
+                    else if (toggleDtoCreate.State==false)
+                    {
+                        
+                        InsertToggle(toggleDtoCreate, service, "IsButtonRed");
+                    }
+                    break;
+                case DTOS.TypeToggleDto.None:
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+
+        private void InsertToggle(ToggleDtoCreate toggleDtoCreate,Service service,string name )
+        {
+            Toggle _toogle = new Toggle();
+            _toogle.Identifier = Guid.NewGuid();
+            
+            _toogle.Services.Add(service);
+            _toogle.Name = name;
+            // _toogle.Services.Add()
             unitOfWork.ToggleRepository.Insert(_toogle);
-           
+
             unitOfWork.Save();
         }
 

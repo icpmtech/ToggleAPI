@@ -14,5 +14,6 @@ namespace Data.Entities
         public Guid Identifier { get; set; }
         public int Version { get; set; }
         public virtual ICollection<Toggle> Toggles { get; set; }
+        public string Name { get; set; }
     }
 }

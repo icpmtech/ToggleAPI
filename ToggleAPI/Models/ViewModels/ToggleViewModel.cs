@@ -1,5 +1,8 @@
 ﻿using Bussiness.Dtos.ToggleManager;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using ToggleAPI.Helpers;
 
 namespace ToggleAPI.Models
 {
@@ -45,9 +48,20 @@ namespace ToggleAPI.Models
         /// <param name="toggleDto">The ToggleDto to use to manage the logic.</param>
         public ToggleViewModel(ToggleDto toggleDto)
         {
+            this.Services = new List<ServiceViewModel>();
+            this.State = toggleDto.State;
+            this.TypeOfActionToogle= Fillers.TypeToggleAction(toggleDto);
             this.Id = toggleDto.Id;
-            
+            foreach (var service in toggleDto.ServicesDto)
+            {
+                this.Services.Add(new ServiceViewModel(service));
+            }
+
+
         }
+
+      
+
         /// <summary>
         /// The type of toogle to activate service logic
         /// </summary>
@@ -57,17 +71,14 @@ namespace ToggleAPI.Models
         /// </summary>
         public Guid Id { get;  set; }
         
-        /// <summary>
-        /// The service identifier to assign to toogle.
-        /// </summary>
-        public Guid ServiceId { get; set; }
-        /// <summary>
-        /// The version of service.
-        /// </summary>
-        public int Version { get; set; }
+       
         /// <summary>
         /// The state of the service by version, id and toogle.
         /// </summary>
         public bool State { get; set; }
+        /// <summary>
+        /// Services/Applications
+        /// </summary>
+        public ICollection<ServiceViewModel> Services { get; set; }
     }
 }

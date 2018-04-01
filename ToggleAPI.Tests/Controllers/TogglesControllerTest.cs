@@ -23,7 +23,7 @@ namespace ToggleAPI.Tests.Controllers
             TogglesController controller = new TogglesController( clientToggle);
 
             // Act
-            IEnumerable<ToggleViewModel> result = controller.GetToggles();
+            var result = controller.GetToggles();
 
             // Assert
             Assert.IsNull(result);

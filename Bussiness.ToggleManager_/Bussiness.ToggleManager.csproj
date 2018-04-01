@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOS\ServiceDto.cs" />
     <Compile Include="DTOS\ToggleDtoCreate.cs" />
     <Compile Include="DTOS\ToggleDto.cs" />
+    <Compile Include="DTOS\TypeToggleDto.cs" />
     <Compile Include="IToggleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToggleManager.cs" />

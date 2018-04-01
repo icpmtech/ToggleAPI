@@ -21,8 +21,46 @@ namespace ToggleAPI.Helpers
             toogleDtoCreate.Version = toggleViewModelCreate.Version;
             toogleDtoCreate.ServiceId = toggleViewModelCreate.ServiceId;
             toogleDtoCreate.State = toggleViewModelCreate.State;
-            toogleDtoCreate.TypeOfActionToogle = (int) toggleViewModelCreate.TypeOfActionToogle;
+            switch (toggleViewModelCreate.TypeOfActionToogle)
+            {
+                case TypeToggle.IsButtonBlue:
+                    toogleDtoCreate.TypeOfActionToogle = Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonBlue;
+                    break;
+                case TypeToggle.IsButtonGreen:
+                    toogleDtoCreate.TypeOfActionToogle = Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonGreen; ;
+                    break;
+                case TypeToggle.IsButtonRed:
+                    toogleDtoCreate.TypeOfActionToogle = Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonRed; ;
+                    break;
+                case TypeToggle.None:
+                    toogleDtoCreate.TypeOfActionToogle = Bussiness.ToggleManager.DTOS.TypeToggleDto.None; ;
+                    break;
+                
+            }
+           
+
             return toogleDtoCreate;
+        }
+        public static TypeToggle TypeToggleAction(ToggleDto toggleDto)
+        {
+           
+            switch (toggleDto.TypeOfActionToogle)
+            {
+                case Bussiness.ToggleManager.DTOS.TypeToggleDto.None:
+                    return TypeToggle.None;
+                  
+                case Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonBlue:
+                    return TypeToggle.IsButtonBlue;
+                    
+                case Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonRed:
+                    return TypeToggle.IsButtonRed;
+                    
+                case Bussiness.ToggleManager.DTOS.TypeToggleDto.IsButtonGreen:
+                    return TypeToggle.IsButtonGreen;
+                    
+
+            }
+            return TypeToggle.None;
         }
     }
 }
