@@ -63,23 +63,23 @@ namespace ToggleAPI.Controllers
         /// Obtain the model toggle passing the id and version
         /// of one service/application in specific. 
         /// </summary>
-        /// <param name="id">The id of one toogle</param>
-        /// <param name="version">The version of one toogle</param>
+        /// <param name="id">The id of one service/application </param>
+        /// <param name="version">The version of one service/application</param>
         /// <returns></returns>
         [HttpGet]
-        [ResponseType(typeof(ToggleViewModel))]
+        [ResponseType(typeof(ToggleServiceViewModel))]
         [Route("api/toggles/{id:guid}/{version:int}")]
         public HttpResponseMessage GetToggleByIdAnVersion(Guid id,int version)
         {
-            ToggleDto toogleDto = new ToggleDto();
-            toogleDto.Id = id;
-            toogleDto.Version = version;
-            var toggleViewModel = new ToggleViewModel(_clientToggle.GetById(toogleDto));
-            if (toggleViewModel==null)
+            ServiceDto serviceDto = new ServiceDto();
+            serviceDto.Id = id;
+            serviceDto.Version = version;
+            var toggleServiceViewModel = new ToggleServiceViewModel(_clientToggle.GetTogglesServiceByIdAndVersion(serviceDto));
+            if (toggleServiceViewModel == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, toggleViewModel);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, toggleServiceViewModel);
             return response;
         }
 

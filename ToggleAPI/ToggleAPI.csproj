@@ -233,6 +233,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="Models\ViewModels\ToggleServiceViewModel.cs" />
     <Compile Include="Helpers\Fillers.cs" />
     <Compile Include="IoC\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

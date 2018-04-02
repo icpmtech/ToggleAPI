@@ -7,6 +7,11 @@ namespace Bussiness.Dtos.ToggleManager
 {
     public class ServiceDto
     {
+
+        public ServiceDto()
+        {
+        }
+
         public ServiceDto(Service service)
         {
             this.Name = service.Name;
@@ -15,8 +20,8 @@ namespace Bussiness.Dtos.ToggleManager
             
         }
 
-        public string Name { get; }
-        public Guid Id { get; }
-        public int Version { get; }
+        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public int Version { get; set; }
     }
 }

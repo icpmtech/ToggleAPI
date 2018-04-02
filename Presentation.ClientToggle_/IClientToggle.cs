@@ -12,5 +12,6 @@ namespace Service.ClientToggle
         ToggleDto Update(ToggleDto toogleDto);
         void Delete(ToggleDto toogleDto);
         void Add(ToggleDtoCreate toogleDtoCreate);
+        TogglesServiceDto GetTogglesServiceByIdAndVersion(ServiceDto serviceDto);
     }
 }

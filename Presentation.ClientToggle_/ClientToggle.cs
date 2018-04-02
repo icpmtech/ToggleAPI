@@ -34,6 +34,12 @@ namespace Service.ClientToggle
           return  _toggleManager.GetById(toogleDto);
         }
 
+        public TogglesServiceDto GetTogglesServiceByIdAndVersion(ServiceDto serviceDto)
+        {
+            return _toggleManager.GetTogglesServiceByIdAndVersion(serviceDto);
+           
+        }
+
         public ToggleDto Update(ToggleDto toogleDto)
         {
            return _toggleManager.Update(toogleDto);

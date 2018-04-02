@@ -10,5 +10,6 @@ namespace Bussiness.ToggleManager
         ToggleDto GetById(ToggleDto toogleDto);
         ToggleDto Update(ToggleDto toogleDto);
         IEnumerable<ToggleDto> GetAll();
+        TogglesServiceDto GetTogglesServiceByIdAndVersion(ServiceDto serviceDto);
     }
 }

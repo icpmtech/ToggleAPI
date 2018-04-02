@@ -93,5 +93,16 @@ namespace Bussiness.ToggleManager
             unitOfWork.Save();
             return toogleDto;
         }
+
+        public TogglesServiceDto GetTogglesServiceByIdAndVersion(ServiceDto serviceDto)
+        {
+            //Get Toggles by service and version 
+            var service = unitOfWork.ServiceRepository.GetById(serviceDto.Id);
+           
+            TogglesServiceDto togglesServiceDto = new TogglesServiceDto(service);
+
+           
+            return togglesServiceDto;
+        }
     }
 }
