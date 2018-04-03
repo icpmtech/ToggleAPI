@@ -1,4 +1,6 @@
 using Bussiness.ToggleManager;
+using Common.Infrastructure;
+
 using Service.ClientToggle;
 using System.Web.Http;
 using Unity;
@@ -12,13 +14,12 @@ namespace ToggleAPI
         {
 			var container = new UnityContainer();
 
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
-
-            // e.g.
+            
             container.RegisterType<IToggleManager, ToggleManager>();
             container.RegisterType<IClientToggle, ClientToggle>();
-            
+           container.RegisterType<ILoggerApi, Logger>();
+
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
