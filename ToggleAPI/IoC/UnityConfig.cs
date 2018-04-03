@@ -20,6 +20,7 @@ namespace ToggleAPI
            container.RegisterType<ILoggerApi, Logger>();
 
 
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
